@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
+//Change background of board
+// document.body.style.background = "url('[https://i.pinimg.com/originals/ac/5d/4d/ac5d4d46396505c6fb8d4fa6b8f20d9e.jpg]')";
+
 // Define your `board` object here!
 var board = {
   cells: []
@@ -9,7 +12,7 @@ var board = {
 function makeCells () {
 
   //generate random number to see if square has a bomb in it or not
-  var getRandomNum = Math.floor(Math.random() * 4)
+  var getRandomNum = Math.floor(Math.random() * 3)
   
   function randomNum (getRandomNum) {
     if (getRandomNum === 0) {
@@ -19,14 +22,14 @@ function makeCells () {
     };
 };
 console.log(getRandomNum)
-console.log(randomNum())
+console.log(randomNum(getRandomNum))
 
   for (i = 0; i < 6; i++) {
     for (j = 0; j < 6; j++) {
       board.cells.push({
         row: i, 
         col: j, 
-        isMine: randomNum, 
+        isMine: randomNum(getRandomNum), 
         isMarked: false,
         hidden: true
       });
