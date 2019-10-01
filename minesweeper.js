@@ -54,16 +54,17 @@ function startGame () {
 
   //add left and right click options 
   document.addEventListener('click', checkForWin)
-  document.addEventListener('contextmenu', checkForWin)
+  document.addEventListener('contextmenu', checkForWin, markedSound)
 
+  //    SOUNDS NOT CONNECTED YET
   //add audio when clicking
   var clickSound = new Audio ('')
-  document['click']
+  // document['click']
 
-  var markedSound = new Audio ('')
-  document['contextmenu']
+  var markedSound = new Audio ('sounds/Tick-tick-tick.m4a')
+  // document['contextmenu']
 
-  var bombFoundSound = new Audio ('')
+  var bombFoundSound = new Audio ('sounds/Tick-tick-boom.m4a')
   
 
   // Don't remove this function call: it makes the game work!
