@@ -31,7 +31,7 @@ function makeCells () {
       board.cells.push({
         row: i, 
         col: j, 
-        isMine: Boolean(Math.floor(Math.random() * 2)),
+        isMine: Boolean(Math.floor(Math.random() * 1.5)),
         isMarked: false,
         hidden: true
       });
@@ -54,17 +54,22 @@ function startGame () {
 
   //add left and right click options 
   document.addEventListener('click', checkForWin)
-  document.addEventListener('contextmenu', checkForWin, markedSound)
+  document.addEventListener('contextmenu', checkForWin)
 
   //    SOUNDS NOT CONNECTED YET
   //add audio when clicking
   var clickSound = new Audio ('')
   // document['click']
 
-  var markedSound = new Audio ('sounds/Tick-tick-tick.m4a')
-  // document['contextmenu']
+  
+  function playAudio(url) {
+    var markedSound = new Audio ('sounds/Tick-tick-tick.m4a');
+    markedSound.play();
+  }
 
   var bombFoundSound = new Audio ('sounds/Tick-tick-boom.m4a')
+
+  var winSound = new Audio ('sounds/winner.mp3')
   
 
   // Don't remove this function call: it makes the game work!
@@ -86,6 +91,7 @@ function checkForWin () {
       } 
     }
     lib.displayMessage('You win!')
+    winSound.play();
   }
 
   // You can use this function call to declare a winner (once you've
