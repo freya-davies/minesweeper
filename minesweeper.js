@@ -7,12 +7,26 @@ var board = {
 
   // automatically generate the board
 function makeCells () {
-  for (i = 0; i < 3; i++) {
-    for (j = 0; j < 3; j++) {
+
+  //generate random number to see if square has a bomb in it or not
+  var getRandomNum = Math.floor(Math.random() * 4)
+  
+  function randomNum (getRandomNum) {
+    if (getRandomNum === 0) {
+      return true;
+    } else {
+      return false;
+    };
+};
+console.log(getRandomNum)
+console.log(randomNum())
+
+  for (i = 0; i < 6; i++) {
+    for (j = 0; j < 6; j++) {
       board.cells.push({
         row: i, 
         col: j, 
-        isMine: true, 
+        isMine: randomNum, 
         isMarked: false,
         hidden: true
       });
@@ -27,6 +41,7 @@ function startGame () {
   //reset board when game is started
   makeCells();
   
+  //add count number to cells
   for (let i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
   }
@@ -66,6 +81,12 @@ function checkForWin () {
     lib.displayMessage('You win!')
   }
 
+  // function checkForLoose () {
+  //   for (i = 0; i < board.cells.length; i++) {
+  //     if (board.cells[i].isMine === true && board.cells[i].hidden === false) {
+  //       return "BOOM BOOM, SHAKE THE ROOM!"
+  // }
+
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
   // lib.displayMessage('You win!')
@@ -78,6 +99,7 @@ function checkForWin () {
 //
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
+
 function countSurroundingMines (cell) {
   //loop through each `surrounding` and return number of isMine === true
   var count = 0;
