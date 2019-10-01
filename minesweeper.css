@@ -47,7 +47,7 @@ body {
 }
 
 div.mine, div.mine:hover {
-  background: no-repeat center/100% url("images/bomb");
+  background: no-repeat center/110% url("images/bomb2.jpg");
 }
 
 div.hidden {

@@ -37,7 +37,6 @@ function makeCells () {
       });
     };
   };
-console.log(board)
 
 };
 
