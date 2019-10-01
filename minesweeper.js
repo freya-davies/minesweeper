@@ -12,31 +12,35 @@ var board = {
 function makeCells () {
 
   //generate random number to see if square has a bomb in it or not
-  var getRandomNum = Math.floor(Math.random() * 3)
+  //this only added the SAME random outcome in and I couldn't make it work. Leaving in because I might come back and work on it later. 
+  // var getRandomNum = Math.floor(Math.random() * 2)
   
-  function randomNum (getRandomNum) {
-    if (getRandomNum === 0) {
-      return true;
-    } else {
-      return false;
-    };
-};
-console.log(getRandomNum)
-console.log(randomNum(getRandomNum))
+  // function randomNum (getRandomNum) {
+  //   if (getRandomNum === 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   };
+  // };
+  // console.log(randomNum(getRandomNum))
+  //   console.log(getRandomNum)
+
 
   for (i = 0; i < 6; i++) {
     for (j = 0; j < 6; j++) {
       board.cells.push({
         row: i, 
         col: j, 
-        isMine: randomNum(getRandomNum), 
+        isMine: Boolean(Math.floor(Math.random() * 2)),
         isMarked: false,
         hidden: true
       });
-    }
-  }
-}
- 
+    };
+  };
+console.log(board)
+
+};
+
 
 
 
@@ -83,12 +87,6 @@ function checkForWin () {
     }
     lib.displayMessage('You win!')
   }
-
-  // function checkForLoose () {
-  //   for (i = 0; i < board.cells.length; i++) {
-  //     if (board.cells[i].isMine === true && board.cells[i].hidden === false) {
-  //       return "BOOM BOOM, SHAKE THE ROOM!"
-  // }
 
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
