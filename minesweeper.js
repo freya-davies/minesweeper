@@ -5,42 +5,47 @@ var board = {
   cells: []
 }
 
+  // automatically generate the board
 function makeCells () {
-
-  // cells = {
-  //   row: 0, 
-  //   col: 0,
-  //   isMine: true, 
-  //   isMarked: false,
-  //   hidden: true
-  // }
-
- for (i = 0; i < 3; i++) {
-   for (j = 0; j < 3; j++) {
-    board.cells.push({
-      row: [i], 
-      col: [j], 
-      isMine: true, 
-      isMarked: false,
-      hidden: true
-    })
-   }
+  for (i = 0; i < 3; i++) {
+    for (j = 0; j < 3; j++) {
+      board.cells.push({
+        row: i, 
+        col: j, 
+        isMine: true, 
+        isMarked: false,
+        hidden: true
+      });
+    }
   }
 }
+ 
+
 
 
 function startGame () {
-  // Don't remove this function call: it makes the game work!
+  //reset board when game is started
+  makeCells();
   
   for (let i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
   }
 
-   
+  //add left and right click options 
   document.addEventListener('click', checkForWin)
   document.addEventListener('contextmenu', checkForWin)
 
+  //add audio when clicking
+  var clickSound = new Audio ('')
+  document['click']
 
+  var markedSound = new Audio ('')
+  document['contextmenu']
+
+  var bombFoundSound = new Audio ('')
+  
+
+  // Don't remove this function call: it makes the game work!
   lib.initBoard()
 }
 
