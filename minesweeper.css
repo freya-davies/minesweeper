@@ -17,7 +17,10 @@ body {
 }
 
 #message {
-  font-size: 1.5rem;
+  font-size: 3rem;
+  color: white;
+  font-family: 'Mansalva', cursive;
+  background-color: rgb(219, 230, 0);
 }
 
 .board {
@@ -44,7 +47,7 @@ body {
 }
 
 div.mine, div.mine:hover {
-  background: no-repeat center/60% url("images/bomb.svg") crimson;
+  background: no-repeat center/100% url("images/bomb");
 }
 
 div.hidden {
@@ -52,9 +55,9 @@ div.hidden {
 }
 
 div.hidden:hover {
-  background: #ccc;
+  background: #dbe600;
 }
 
-div.marked, div.marked:hover {
-  background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+div.marked, div.marked:hover  {
+  background: no-repeat center/140% url("images/marker.jpeg");
 }
