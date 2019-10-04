@@ -54,7 +54,7 @@ function startGame () {
   
   function soundBombFound () {
     var bombFoundSound = new Audio ('sounds/Tick-tick-boom.m4a')
-    bombFoundSound.Click.play();
+    bombFoundSound.play();
   };
   
   function soundwin () {
@@ -73,6 +73,7 @@ function startGame () {
         soundClick();
       }
     }
+    console.log(soundBombFound)
   };
 
 
