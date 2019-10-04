@@ -62,6 +62,7 @@ function startGame () {
     winSound.play();
   };
   
+  //wanna put in - if item that was click has a mine that is not marked then play X and...
   function clicking () {
 
     for (i = 0; i < board.cells.length; i++) {
