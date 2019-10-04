@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
-//Change background of board
-// document.body.style.background = "url('[https://i.pinimg.com/originals/ac/5d/4d/ac5d4d46396505c6fb8d4fa6b8f20d9e.jpg]')";
-
 // Define your `board` object here!
 var board = {
   cells: []
@@ -10,21 +7,6 @@ var board = {
 
   // automatically generate the board
 function makeCells () {
-
-  //generate random number to see if square has a bomb in it or not
-  //this only added the SAME random outcome in and I couldn't make it work. Leaving in because I might come back and work on it later. 
-  // var getRandomNum = Math.floor(Math.random() * 2)
-  
-  // function randomNum (getRandomNum) {
-  //   if (getRandomNum === 0) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   };
-  // };
-  // console.log(randomNum(getRandomNum))
-  //   console.log(getRandomNum)
-
 
   for (i = 0; i < 6; i++) {
     for (j = 0; j < 6; j++) {
@@ -40,46 +22,69 @@ function makeCells () {
 
 };
 
-
-
-
 function startGame () {
-  //reset board when game is started
-  makeCells();
-  
+  makeCells ()
   //add count number to cells
   for (let i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
   }
 
-  //add left and right click options 
+  //add left and right click options and sounds
   document.addEventListener('click', checkForWin)
+  document.addEventListener('click', clicking)
   document.addEventListener('contextmenu', checkForWin)
-
-  //    SOUNDS NOT CONNECTED YET
-  //add audio when clicking
-  var clickSound = new Audio ('')
-  // document['click']
-
-  
-  function playAudio(url) {
-    var markedSound = new Audio ('sounds/Tick-tick-tick.m4a');
-    markedSound.play();
-  }
-
-  var bombFoundSound = new Audio ('sounds/Tick-tick-boom.m4a')
-
-  var winSound = new Audio ('sounds/winner.mp3')
+  document.addEventListener('contextmenu', soundMarked)
   
 
   // Don't remove this function call: it makes the game work!
   lib.initBoard()
-}
+};
+
+
+  //add audio when clicking
+  function soundMarked () {
+    var markedSound = new Audio ('sounds/Tick-tick-tick.m4a');
+    markedSound.play();
+  };
+  
+  function soundClick () {
+    var clickSound = new Audio ('sounds/Click.m4a');
+    clickSound.play();
+  };
+  
+  function soundBombFound () {
+    var bombFoundSound = new Audio ('sounds/Tick-tick-boom.m4a')
+    bombFoundSound.Click.play();
+  };
+  
+  function soundwin () {
+    var winSound = new Audio ('sounds/winner.mp3');
+    winSound.play();
+  };
+  
+  function clicking () {
+
+    for (i = 0; i < board.cells.length; i++) {
+
+      if (board.cells[i].isMine === true && board.cells[i].isMarked === true) {
+        soundBombFound();
+      } else 
+      if (board.cells[i].isMine === true && board.cells[i].isMarked === false){
+        soundClick();
+      }
+    }
+  };
+
+
+//resets the board when button clicked
+function resetButton () {
+  var reset = document.getElementsByClassName("resetButton");
+
+  reset.addEventListener("click", makeCells)
+};
+
 
 // Define this function to look for a win condition:
-//
-// 1. Are all of the cells that are NOT mines visible?
-// 2. Are all of the mines marked?
 function checkForWin () {
 
     for (i = 0; i < board.cells.length; i++) {
@@ -91,22 +96,11 @@ function checkForWin () {
       } 
     }
     lib.displayMessage('You win!')
-    winSound.play();
-  }
+    soundwin();
+  };
 
-  // You can use this function call to declare a winner (once you've
-  // detected that they've won, that is!)
-  // lib.displayMessage('You win!')
 
-// Define this function to count the number of mines around the cell
-// (there could be as many as 8). You don't have to get the surrounding
-// cells yourself! Just use `lib.getSurroundingCells`: 
-//
-//   var surrounding = lib.getSurroundingCells(cell.row, cell.col)
-//
-// It will return cell objects in an array. You should loop through 
-// them, counting the number of times `cell.isMine` is true.
-
+  // this adds count of surrounding boxes into each box
 function countSurroundingMines (cell) {
   //loop through each `surrounding` and return number of isMine === true
   var count = 0;
@@ -118,5 +112,5 @@ function countSurroundingMines (cell) {
     }
   }
   return count;
-    
-}
+  
+};
