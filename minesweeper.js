@@ -31,7 +31,7 @@ function startGame () {
 
   //add left and right click options and sounds
   document.addEventListener('click', checkForWin)
-  document.addEventListener('click', clicking)
+  document.addEventListener('click', addClickingSounds)
   document.addEventListener('contextmenu', checkForWin)
   document.addEventListener('contextmenu', soundMarked)
   
@@ -41,41 +41,49 @@ function startGame () {
 };
 
 
-  //add audio when clicking
-  function soundMarked () {
-    var markedSound = new Audio ('sounds/Tick-tick-tick.m4a');
-    markedSound.play();
-  };
-  
-  function soundClick () {
-    var clickSound = new Audio ('sounds/Click.m4a');
-    clickSound.play();
-  };
-  
-  function soundBombFound () {
-    var bombFoundSound = new Audio ('sounds/Tick-tick-boom.m4a')
-    bombFoundSound.play();
-  };
-  
-  function soundwin () {
-    var winSound = new Audio ('sounds/winner.mp3');
-    winSound.play();
-  };
-  
-  //wanna put in - if item that was clicked has a mine that is not marked then play X and...
-  function clicking () {
+//add audio when clicking
+function soundMarked () {
+  var markedSound = new Audio ('sounds/Tick-tick-tick.m4a');
+  markedSound.play();
+};
 
-    for (i = 0; i < board.cells.length; i++) {
+function soundClick () {
+  var clickSound = new Audio ('sounds/Click.m4a');
+  clickSound.play();
+};
 
-      if (board.cells[i].isMine === true && board.cells[i].isMarked === true) {
-        soundBombFound();
-      } else 
-      if (board.cells[i].isMine === true && board.cells[i].isMarked === false){
-        soundClick();
-      }
-    }
-    console.log(soundBombFound)
-  };
+function soundBombFound () {
+  var bombFoundSound = new Audio ('sounds/Tick-tick-boom.m4a')
+  bombFoundSound.play();
+};
+
+function soundwin () {
+  var winSound = new Audio ('sounds/winner.mp3');z
+  winSound.play();
+};
+
+//wanna put in - if item that was clicked has a mine that is not marked then play X and...
+function addClickingSounds (e) {
+
+  // e.target refers to the clicked element
+  var clickedBox = e.target.board.cells
+  if (clickedBox.isMine === true && clickedBox.isMarked === false) {
+    soundClick();
+  } else 
+  if (clickedBox.isMine === true && clickedBox.isMarked === true) {
+    soundBombFound();
+  }
+};
+
+    //   if (board.cells[i].isMine === true && board.cells[i].isMarked === true) {
+    //     soundBombFound();
+    //   } else 
+    //   if (board.cells[i].isMine === true && board.cells[i].isMarked === false){
+    //     soundClick();
+    //   }
+    // }
+  //   // console.log(soundBombFound)
+  // };2
 
 
 //resets the board when button clicked
@@ -84,6 +92,10 @@ function resetButton () {
 
   reset.addEventListener("click", makeCells)
 };
+
+function resetBoard() {
+  document.getElementsByClassName("board")[0].innerHTML = "";
+} 
 
 
 // Define this function to look for a win condition:
