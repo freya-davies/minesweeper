@@ -64,7 +64,7 @@ div.marked, div.marked:hover  {
 }
 
 .resetButton {
-  height: 80px;
+  height: 70px;
   width: 160px;
   background-color: 	#FF5F19;
   color: white;
@@ -73,4 +73,17 @@ div.marked, div.marked:hover  {
   border-radius: 10%;
   border: none;
   text-align: center;
+}
+
+.disclaimer {
+  height: 80px;
+  width: 80%;
+  background-color: #FF8C64;
+  color: white;
+  font-size: 1rem;
+  font-family: 'Mansalva', cursive;
+  border-radius: 10%;
+  border: none;
+  text-align: center;
+  overflow: scroll;
 }
