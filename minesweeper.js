@@ -64,13 +64,15 @@ function soundwin () {
 
 //wanna put in - if item that was clicked has a mine that is not marked then play X and...
 function addClickingSounds (e) {
-
   // e.target refers to the clicked element
-  var clickedBox = e.target.board.cells
-  if (clickedBox.isMine === true && clickedBox.isMarked === false) {
+  var element = e.target
+  var isMine = element.classList.contains("mine")
+  var isMarked = element.classList.contains("marked")
+
+  if (!isMine) {
     soundClick();
-  } else 
-  if (clickedBox.isMine === true && clickedBox.isMarked === true) {
+  } 
+  else if (isMine) {
     soundBombFound();
   }
 };
@@ -87,6 +89,7 @@ function addClickingSounds (e) {
 
 
 //resets the board when button clicked
+//this is broken
 function resetButton () {
   var reset = document.getElementsByClassName("resetButton");
 
@@ -104,8 +107,8 @@ function checkForWin () {
     for (i = 0; i < board.cells.length; i++) {
       if (board.cells[i].isMine === true && board.cells[i].isMarked === false) {
         return
-      } else 
-      if (board.cells[i].isMine === false && board.cells[i].hidden == true) {
+      } 
+      else if (board.cells[i].isMine === false && board.cells[i].hidden == true) {
         return
       } 
     }
