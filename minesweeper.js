@@ -58,7 +58,7 @@ function soundBombFound () {
 };
 
 function soundwin () {
-  var winSound = new Audio ('sounds/winner.mp3');z
+  var winSound = new Audio ('sounds/winner.mp3');
   winSound.play();
 };
 
@@ -114,6 +114,7 @@ function checkForWin () {
     }
     lib.displayMessage('You win!')
     soundwin();
+    console.log(soundwin)
   };
 
 
